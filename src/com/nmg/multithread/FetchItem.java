@@ -19,7 +19,7 @@ import com.ibm.pim.utils.Logger;
  
 public class FetchItem implements Callable<HashMap<String,String>> {
 	/**
-	 * Default constructor. 
+	 * Default constructor. Venu
 	 */
 // NPA for other offers
 	public static final String OFFER_ITEM_ID_PATH           = "iLiNK Offer Item Ctg Spec/System/Identifiers/Offer Item Id";
