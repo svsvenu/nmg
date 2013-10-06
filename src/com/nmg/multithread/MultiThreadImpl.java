@@ -32,12 +32,15 @@ import java.util.List;
 import com.ibm.pim.utils.Logger;
 
 import com.ibm.pim.extensionpoints.ScriptingSandboxFunction;
+import com.nmg.multithread.item.ItemAsyncService;
+import com.nmg.multithread.offeritem.OfferItemAsyncService;
+import com.nmg.multithread.poitem.POItemAsyncService;
 
 /**
  * @author venu.surampudi
  *
  */
-public class ScriptingSandboxTestImpl implements  EntryBuildFunction {
+public class MultiThreadImpl implements  EntryBuildFunction {
 
 	private ArrayList<String> otherOfferItemIDs    		= 	new ArrayList<String>();
 	
@@ -53,13 +56,25 @@ public class ScriptingSandboxTestImpl implements  EntryBuildFunction {
 	public void entryBuild(ItemEntryBuildFunctionArguments arg0) {
 		
 		Item it = arg0.getItem();
-
 		
-	//	logger.logInfo("-----------------------------Got item "  + it.getDisplayName());
+		logger.logInfo("-----------------------------Got item "  + it.getDisplayName());
 		
-		HashMap<String, Response> npa = getOtherOffers(it.getPrimaryKey(), it);
+	//	HashMap<String, Response> npa = getOtherOffers(it.getPrimaryKey(), it);
 		
-		for (String index : npa.keySet()){
+	//	OfferItemAsyncService offerItemAsyncService = new OfferItemAsyncService(pimContext);
+		
+	//	offerItemAsyncService.getOtherOffers(it.getPrimaryKey(), it);
+		
+	//	ItemAsyncService itemAsyncService = new ItemAsyncService(pimContext); 
+		
+	//	itemAsyncService.getOtherOffers(it.getPrimaryKey(), it);
+		
+		POItemAsyncService poItemAsyncService = new POItemAsyncService(pimContext);
+		
+		poItemAsyncService.getOtherOffers(it.getPrimaryKey(), it);
+			
+		
+		/*for (String index : npa.keySet()){
 			
 			Response rp =   npa.get(index);
 			
@@ -96,11 +111,11 @@ public class ScriptingSandboxTestImpl implements  EntryBuildFunction {
 
 			}
 			
-		}
+		}*/
 		
 	}
 	
-	private void setOtherItemIDArray(String attributePath, Item item) {
+	/*private void setOtherItemIDArray(String attributePath, Item item) {
 
 		try {
 			
@@ -116,7 +131,7 @@ public class ScriptingSandboxTestImpl implements  EntryBuildFunction {
 			
 	//		logger.logInfo("path passed is " + attributePath + " Children size is " + attrInstance.getChildren().size());
 			
-	/*		logger.logInfo("item passed is " + item.getDisplayName() + "attribute path is " + attrInstance.getPath() + " instance owner is  " + attrInstance.getOwner()
+			logger.logInfo("item passed is " + item.getDisplayName() + "attribute path is " + attrInstance.getPath() + " instance owner is  " + attrInstance.getOwner()
 							+  " attr instance displayValue " + attrInstance + " index= " + attrInstance.getOccurrenceIndex()
 							+ " Attribute children count=" + attrInstance.getChildren().size()
 							+ " Localized name" + attrInstance.getAttributeDefinition().getLocalizedName()
@@ -125,7 +140,7 @@ public class ScriptingSandboxTestImpl implements  EntryBuildFunction {
 						
 							
 					
-					);*/
+					);
 				
 				for (AttributeInstance innerInstance : innerInstances) {
 					
@@ -173,7 +188,7 @@ public class ScriptingSandboxTestImpl implements  EntryBuildFunction {
 
      	}
 
-	}
+	}*/
 
 	@Override
 	public void entryBuild(CategoryEntryBuildFunctionArguments arg0) {
@@ -199,7 +214,7 @@ public class ScriptingSandboxTestImpl implements  EntryBuildFunction {
 		
 	}
 
-	public  HashMap<String, Response> getOtherOffers(String primaryKey, Item item){
+/*	public  HashMap<String, Response> getOtherOffers(String primaryKey, Item item){
 		
 		com.ibm.pim.context.Context PIMContext;
 		
@@ -256,6 +271,6 @@ public class ScriptingSandboxTestImpl implements  EntryBuildFunction {
 		
 		return npa;
 		
-	}
+	}*/
 
 }

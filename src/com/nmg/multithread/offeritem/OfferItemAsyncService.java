@@ -17,9 +17,9 @@ import com.ibm.pim.common.ProcessingOptions;
 import com.ibm.pim.context.Context;
 import com.ibm.pim.context.PIMContextFactory;
 import com.ibm.pim.utils.Logger;
-import com.nmg.multithread.FetchItem;
-import com.nmg.multithread.NPAttributes;
-import com.nmg.multithread.Response;
+import com.nmg.multithread.FetchItem; 
+import com.nmg.multithread.offeritem.NPAttributes;
+import com.nmg.multithread.offeritem.Response;
 
 public class OfferItemAsyncService  {
 	/**
@@ -104,7 +104,7 @@ public class OfferItemAsyncService  {
      			if ( responseHash.get(hm.get("index")) == null   ) {
      				
      				Response rp = new Response();
-     				
+     			     				
      				rp.getOtherOfferItems().add(item);
      				
      				responseHash.put(hm.get("index"), rp);
@@ -143,7 +143,7 @@ public class OfferItemAsyncService  {
 
 	}
 	
-public  HashMap<String, Response> getOtherOffers(String primaryKey, Item item){
+	public  void getOtherOffers(String primaryKey, Item item){
 		
 		com.ibm.pim.context.Context PIMContext;
 		
@@ -215,12 +215,11 @@ public  HashMap<String, Response> getOtherOffers(String primaryKey, Item item){
 		 
 		}
 		
-		return npa;
+	//	return npa;
 		
 	}
 
-
-private void setOtherItemIDArray(String attributePath, Item item) {
+	private void setOtherItemIDArray(String attributePath, Item item) {
 
 	try {
 		
